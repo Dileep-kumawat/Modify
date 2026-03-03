@@ -1,0 +1,26 @@
+.button {
+    padding: 0.75rem 1.25rem;
+    border-radius: $radius;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: $transition;
+
+    &--primary {
+        background: $primary;
+        color: white;
+
+        &:hover {
+            background: $primary-dark;
+        }
+    }
+
+    &--ghost {
+        background: transparent;
+        color: $text-light;
+
+        &:hover {
+            color: $text-dark;
+        }
+    }
+}

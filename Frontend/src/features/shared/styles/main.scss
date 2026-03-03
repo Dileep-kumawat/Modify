@@ -1,0 +1,459 @@
+// @import "./abstracts/variables";
+// @import "./base/reset";
+// @import "./components/button";
+// @import "./components/input";
+// @import "./components/card";
+// @import "./layout/sidebar";
+// @import "./layout/navbar";
+// @import "./pages/auth";
+// @import "./pages/dashboard";
+
+/* =====================================================
+   DESIGN TOKENS (Dark Modern SaaS)
+===================================================== */
+
+$bg-primary: #0f172a;
+$bg-secondary: #111827;
+$bg-card: #1e293b;
+$bg-hover: #243247;
+
+$primary: #6366f1;
+$primary-hover: #7c82ff;
+
+$text-primary: #f1f5f9;
+$text-secondary: #94a3b8;
+
+$border: rgba(255, 255, 255, 0.06);
+
+$radius: 14px;
+$transition: all 0.25s ease;
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: radial-gradient(circle at 20% 20%,
+            rgba(99, 102, 241, 0.15),
+            transparent 40%),
+        $bg-primary;
+    color: $text-primary;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* =====================================================
+   REUSABLE COMPONENTS
+===================================================== */
+
+/* ---- Card ---- */
+
+.card {
+    background: $bg-card;
+    border-radius: $radius;
+    padding: 2rem;
+    border: 1px solid $border;
+    backdrop-filter: blur(10px);
+    transition: $transition;
+
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+}
+
+
+/* ---- Button ---- */
+
+.button {
+    padding: 0.75rem 1.3rem;
+    border-radius: $radius;
+    font-weight: 500;
+    border: none;
+    transition: $transition;
+
+    &--primary {
+        background: $primary;
+        color: white;
+
+        &:hover {
+            background: $primary-hover;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+    }
+
+    &--ghost {
+        background: transparent;
+        color: $text-secondary;
+
+        &:hover {
+            color: $text-primary;
+        }
+    }
+}
+
+
+/* ---- Input ---- */
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-bottom: .5rem;
+
+    label {
+        font-size: 0.85rem;
+        color: $text-secondary;
+    }
+
+    input {
+        padding: 0.75rem 1rem;
+        border-radius: $radius;
+        border: 1px solid $border;
+        background: $bg-secondary;
+        color: $text-primary;
+        font-size: 0.95rem;
+        transition: $transition;
+
+        &:focus {
+            outline: none;
+            border-color: $primary;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+    }
+}
+
+
+/* =====================================================
+   AUTH PAGES (Login + Register)
+===================================================== */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.auth-header {
+    text-align: center;
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+
+    p {
+        color: $text-secondary;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+}
+
+.auth-footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: $text-secondary;
+
+    span {
+        color: $primary;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+            color: $primary-hover;
+        }
+    }
+}
+
+
+/* =====================================================
+   DASHBOARD LAYOUT
+===================================================== */
+
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ---- Sidebar ---- */
+
+.sidebar {
+    width: 250px;
+    background: $bg-secondary;
+    border-right: 1px solid $border;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $primary;
+    }
+
+    a {
+        font-size: 0.95rem;
+        color: $text-secondary;
+        padding: 0.6rem 0.8rem;
+        border-radius: 10px;
+        transition: $transition;
+
+        &:hover {
+            background: $bg-hover;
+            color: $text-primary;
+        }
+    }
+}
+
+
+/* ---- Main Area ---- */
+
+.dashboard-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ---- Navbar ---- */
+
+.navbar {
+    height: 70px;
+    background: $bg-secondary;
+    border-bottom: 1px solid $border;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    span {
+        font-weight: 500;
+    }
+}
+
+
+/* ---- Main Content ---- */
+
+.dashboard-main {
+    padding: 2rem;
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        p {
+            color: $text-secondary;
+        }
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        border-right: none;
+        border-bottom: 1px solid $border;
+    }
+}
+
+
+/* =====================================================
+    Loader
+===================================================== */
+
+.loader {
+    --w: 10ch;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    line-height: 1.2em;
+    letter-spacing: var(--w);
+    width: var(--w);
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ffffff00;
+    animation: l17 2s infinite;
+}
+
+.loader:before {
+    content: "Loading...";
+}
+
+@keyframes l17 {
+    0% {
+        text-shadow:
+            calc(0*var(--w)) -1.2em #fff, calc(-1*var(--w)) -1.2em #fff, calc(-2*var(--w)) -1.2em #fff, calc(-3*var(--w)) -1.2em #fff, calc(-4*var(--w)) -1.2em #fff,
+            calc(-5*var(--w)) -1.2em #fff, calc(-6*var(--w)) -1.2em #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    4% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) -1.2em #fff, calc(-2*var(--w)) -1.2em #fff, calc(-3*var(--w)) -1.2em #fff, calc(-4*var(--w)) -1.2em #fff,
+            calc(-5*var(--w)) -1.2em #fff, calc(-6*var(--w)) -1.2em #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    8% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) -1.2em #fff, calc(-3*var(--w)) -1.2em #fff, calc(-4*var(--w)) -1.2em #fff,
+            calc(-5*var(--w)) -1.2em #fff, calc(-6*var(--w)) -1.2em #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    12% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) -1.2em #fff, calc(-4*var(--w)) -1.2em #fff,
+            calc(-5*var(--w)) -1.2em #fff, calc(-6*var(--w)) -1.2em #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    16% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) -1.2em #fff,
+            calc(-5*var(--w)) -1.2em #fff, calc(-6*var(--w)) -1.2em #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    20% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) -1.2em #fff, calc(-6*var(--w)) -1.2em #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    24% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) -1.2em #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    28% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 0 #fff, calc(-7*var(--w)) -1.2em #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    32% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 0 #fff, calc(-7*var(--w)) 0 #fff, calc(-8*var(--w)) -1.2em #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    36% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 0 #fff, calc(-7*var(--w)) 0 #fff, calc(-8*var(--w)) 0 #fff, calc(-9*var(--w)) -1.2em #fff
+    }
+
+    40%,
+    60% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 0 #fff, calc(-7*var(--w)) 0 #fff, calc(-8*var(--w)) 0 #fff, calc(-9*var(--w)) 0 #fff
+    }
+
+    64% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 0 #fff, calc(-7*var(--w)) 0 #fff, calc(-8*var(--w)) 0 #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    68% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 0 #fff, calc(-7*var(--w)) 0 #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    72% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 0 #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    76% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 0 #fff, calc(-6*var(--w)) 1.2em #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    80% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 0 #fff,
+            calc(-5*var(--w)) 1.2em #fff, calc(-6*var(--w)) 1.2em #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    84% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 0 #fff, calc(-4*var(--w)) 1.2em #fff,
+            calc(-5*var(--w)) 1.2em #fff, calc(-6*var(--w)) 1.2em #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    88% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 0 #fff, calc(-3*var(--w)) 1.2em #fff, calc(-4*var(--w)) 1.2em #fff,
+            calc(-5*var(--w)) 1.2em #fff, calc(-6*var(--w)) 1.2em #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    92% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 0 #fff, calc(-2*var(--w)) 1.2em #fff, calc(-3*var(--w)) 1.2em #fff, calc(-4*var(--w)) 1.2em #fff,
+            calc(-5*var(--w)) 1.2em #fff, calc(-6*var(--w)) 1.2em #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    96% {
+        text-shadow:
+            calc(0*var(--w)) 0 #fff, calc(-1*var(--w)) 1.2em #fff, calc(-2*var(--w)) 1.2em #fff, calc(-3*var(--w)) 1.2em #fff, calc(-4*var(--w)) 1.2em #fff,
+            calc(-5*var(--w)) 1.2em #fff, calc(-6*var(--w)) 1.2em #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+
+    100% {
+        text-shadow:
+            calc(0*var(--w)) 1.2em #fff, calc(-1*var(--w)) 1.2em #fff, calc(-2*var(--w)) 1.2em #fff, calc(-3*var(--w)) 1.2em #fff, calc(-4*var(--w)) 1.2em #fff,
+            calc(-5*var(--w)) 1.2em #fff, calc(-6*var(--w)) 1.2em #fff, calc(-7*var(--w)) 1.2em #fff, calc(-8*var(--w)) 1.2em #fff, calc(-9*var(--w)) 1.2em #fff
+    }
+}
