@@ -34,6 +34,21 @@ async function uploadController(req, res) {
     });
 }
 
+async function getSongsController(req, res) {
+    const { mood } = req.query;
+
+    // const songs = await songModel.find({ mood });
+
+    const count = await songModel.estimatedDocumentCount();
+    const random = Math.floor(Math.random() * count);
+    const song = await songModel.findOne({ mood }).skip(random).limit(1);
+
+    res.status(200).json({
+        song
+    });
+}
+
 module.exports = {
-    uploadController
+    uploadController,
+    getSongsController
 }
