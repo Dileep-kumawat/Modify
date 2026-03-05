@@ -10,11 +10,7 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(express.static("public"));
-
-app.get("/", (req, res) => {
-    res.sendFile("../index.html")
-})
+app.use(express.static("./public"));
 
 /**
  * @route /api/song
