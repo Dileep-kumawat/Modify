@@ -13,7 +13,7 @@ app.use(cors({
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-    res.sendFile("index.html")
+    res.sendFile("../index.html")
 })
 
 /**
