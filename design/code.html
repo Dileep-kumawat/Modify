@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modify Mood Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2547f4",
+                        "accent-purple": "#a855f7",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0a0c14",
+                        "card-dark": "#161926",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(22, 25, 38, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-yellow {
+            box-shadow: 0 0 40px rgba(234, 179, 8, 0.2);
+        }
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        }
+        .face-scan-frame {
+            border: 2px solid #2547f4;
+            box-shadow: 0 0 15px #2547f4;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="glass sticky top-0 z-50 flex items-center justify-between px-8 py-4 border-b border-white/5">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">waves</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">Modify</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-primary" href="#">Home</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition-colors" href="#">Explore</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition-colors" href="#">Library</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition-colors" href="#">Insights</a>
+</nav>
+</div>
+<div class="flex items-center gap-6 flex-1 max-w-md mx-10">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full bg-white/5 border-none rounded-xl py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/50 text-slate-200 placeholder:text-slate-500" placeholder="Search music or artists..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-white/5 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+<div class="h-8 w-[1px] bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-medium">Alex Rivera</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-wider">Premium</p>
+</div>
+<div class="size-10 rounded-full border-2 border-primary/20 p-0.5">
+<div class="size-full rounded-full bg-cover bg-center" data-alt="User profile avatar of a smiling man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8RCvrGvsUcSyh5pZcQ7TOUj0Fwgr_OOfp8JaWuxoQ1tpBLn0Rr_jfoNTREdApvb4jBmVdXSfUUKz4TZEXl1pSs0kIUna9PIVCXnu9IzJklpd8_a83iiARkqeWzT3j27Z9uNqLf_2o6eKgKhw_9CjMkBT_ApsOI4EMH9Mci70YxhS77Lsd1iGN2Jt5ruDNiL3jR6C6e26eX4E3WR8YlERUvtAHfzo0K_DFQVQZCKrBlC7ot4Hc4nZYkgdBZO6CbHkghEnoomvyY0I')"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex flex-1 overflow-hidden">
+<!-- Left Sidebar: AI Scanner -->
+<aside class="w-80 border-r border-white/5 flex flex-col p-6 gap-6 bg-background-dark/50">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-semibold uppercase tracking-widest text-slate-500">Mood Scanner</h3>
+<span class="flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</div>
+<div class="relative aspect-square rounded-2xl overflow-hidden bg-black flex items-center justify-center group">
+<div class="absolute inset-0 bg-cover bg-center opacity-70" data-alt="Live webcam preview of a man's face for AI detection" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEXtTBwWuqbSBU2-_BvR4L5DRMa0g0MSx_edyrsfjp8TnMdpeN6kV_S8uKpC_GSb0v7qLdN3gcyf3Ywo93lOXQIrmkRm6oOPe57RtT9d6UsEWeZ8IIJcEN1n6_J94IntGBM16Csjvf5MWJIn7RMuRsfiziofLLZWH_2wt1flx9EOY2Ei7kLCYdYztmoVb5SBAEmjzPgy7sqoVu3EbXXBSHOou3q2Ah0dew9bdDSZPWJJ17A4aZWZ1t2_ggocm-RrQsFp-waVienrg')"></div>
+<!-- Detection Overlays -->
+<div class="absolute top-1/4 left-1/4 right-1/4 bottom-1/3 face-scan-frame rounded-lg flex items-center justify-center">
+<div class="absolute -top-6 left-0 bg-primary text-[10px] px-2 py-0.5 rounded uppercase font-bold text-white">Detecting...</div>
+</div>
+<div class="absolute bottom-4 left-4 right-4 py-2 px-3 glass rounded-lg text-center">
+<p class="text-[10px] font-medium text-primary animate-pulse tracking-widest">ANALYZING FACIAL EXPRESSIONS</p>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-sm">rebase_edit</span>
+                        Recalibrate
+                    </button>
+<p class="text-[11px] text-center text-slate-500">AI scanning active. Update frequency: 5s</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border border-primary/20" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-sm font-medium">Mood History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">playlist_play</span>
+<span class="text-sm font-medium">Playlists</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">album</span>
+<span class="text-sm font-medium">Albums</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content -->
+<section class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+<!-- Mood Display Hero -->
+<div class="mb-12 relative">
+<div class="flex flex-col md:flex-row items-center gap-8 glass p-10 rounded-3xl glow-yellow overflow-hidden">
+<!-- Background Glow Decorative -->
+<div class="absolute -top-24 -right-24 size-64 bg-yellow-500/10 blur-[100px] rounded-full"></div>
+<div class="size-40 rounded-full bg-yellow-500 flex items-center justify-center text-background-dark shadow-2xl shadow-yellow-500/50">
+<span class="material-symbols-outlined text-7xl fill-1">sentiment_very_satisfied</span>
+</div>
+<div class="flex-1 text-center md:text-left">
+<p class="text-yellow-500 font-bold uppercase tracking-[0.3em] text-sm mb-2">Current Detection</p>
+<h1 class="text-6xl font-bold mb-4 tracking-tight">Happy</h1>
+<div class="flex flex-wrap justify-center md:justify-start gap-4">
+<div class="bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
+<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Confidence</p>
+<div class="flex items-center gap-2">
+<span class="text-xl font-bold">87%</span>
+<span class="text-xs text-green-400 flex items-center">+2.4%</span>
+</div>
+</div>
+<div class="bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
+<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Beats Per Minute</p>
+<p class="text-xl font-bold">128 <span class="text-xs font-normal text-slate-500">BPM</span></p>
+</div>
+<div class="bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
+<p class="text-[10px] text-slate-500 uppercase font-bold mb-1">Key Profile</p>
+<p class="text-xl font-bold">C Major</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommendations Grid -->
+<div>
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold">Recommended for your Mood</h2>
+<a class="text-sm font-medium text-primary hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+<!-- Song Card -->
+<div class="group bg-card-dark/40 hover:bg-card-dark/80 p-4 rounded-2xl transition-all duration-300 border border-white/5 hover:border-white/10">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Vibrant abstract neon album cover art" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwo2yNB0jWtob5bgeQFbuYydseUZhm-YSTM3aVDxJFwXDsy-MMKRixL5eYNnViqW_beZ-Hy-mpMS_SrIW4PkNnxmqpw9MoK8yBtbwlZLPljLwGifUAOm4AIDzl1ixk-_ReKSUdwAgCZB4K1rqscGeiZD2vo6uRI5FnAHRt9T53UtnHcIcvmdnCcZT1O5Eyxg3oS-rkLMZfpGWhKfIGpyf6_KvlacgOiZe2ESNRub2OFOIcw9_flApbBvMZVo_qzIeNLmGS2U8QCVM')"></div>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="size-12 bg-primary rounded-full flex items-center justify-center text-white translate-y-4 group-hover:translate-y-0 transition-transform">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-yellow-500 text-[10px] font-bold rounded uppercase">Happy</div>
+</div>
+<h4 class="font-bold text-slate-100 truncate">Electric Dreams</h4>
+<p class="text-sm text-slate-500 truncate">Neon Horizon</p>
+</div>
+<!-- Song Card -->
+<div class="group bg-card-dark/40 hover:bg-card-dark/80 p-4 rounded-2xl transition-all duration-300 border border-white/5 hover:border-white/10">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Concert stage with golden light and atmosphere" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDorTdyMM8MoWzrzx0a2qS32KE3VE5U6pq86vVWEb03YrwbVjZ8xTM8qbikqPl-PgDw_uA3vnGVoT5qNopJ9B9PIHzLFVjPr7QxKdpipxpvtFoTWhh32R2PWR50rBGp6GYe7F4rJqqT4y3R4P_SdfMEd47WDTFJaNAfr58-XbE22s5Im-a3Ginzw5l2It5q-RTyJ5hSmSVkyd30f7Gs8X7MLxFZtYtLvNBoMddfroJRHsHKbKqseUAORXBGim9iw4smS2231R6hX0M')"></div>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="size-12 bg-primary rounded-full flex items-center justify-center text-white translate-y-4 group-hover:translate-y-0 transition-transform">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-yellow-500 text-[10px] font-bold rounded uppercase">Happy</div>
+</div>
+<h4 class="font-bold text-slate-100 truncate">Sunlight Beats</h4>
+<p class="text-sm text-slate-500 truncate">Vibe Collective</p>
+</div>
+<!-- Song Card -->
+<div class="group bg-card-dark/40 hover:bg-card-dark/80 p-4 rounded-2xl transition-all duration-300 border border-white/5 hover:border-white/10">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Abstract colorful light streaks and patterns" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQvKB-iIGsk5HaHeAaL7PEdB0T2f2ajxAAFoaSyj8RW_c8cnYylqHup5vjcgdTQmCK9-C89wc-4FoLHFcnTtKhBq-qBxX1bKgzUhLIiZU1WFPEmDWFpYFL-CMFi8DBeRU_kLKgho9aeQHe5PsollvoEBAxun_tRnu_yTJ44aZiGhDSCAGYHfeoPdzi654Y1qLtdVW5ey92t-adHvpVU4bAO-mNRuG98JPIX9KoftWxI8CO5lxVUjgEqk3YhQv2ViG0dHY_Uu07x8s')"></div>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="size-12 bg-primary rounded-full flex items-center justify-center text-white translate-y-4 group-hover:translate-y-0 transition-transform">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-yellow-500 text-[10px] font-bold rounded uppercase">Happy</div>
+</div>
+<h4 class="font-bold text-slate-100 truncate">Euphoric High</h4>
+<p class="text-sm text-slate-500 truncate">Nova Flow</p>
+</div>
+<!-- Song Card -->
+<div class="group bg-card-dark/40 hover:bg-card-dark/80 p-4 rounded-2xl transition-all duration-300 border border-white/5 hover:border-white/10">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Surreal colorful landscape with music elements" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqVjvUHDvReCYwWjHrz9sauG1jT4BM__gYl4lrsJTW25WqmoaWw1Mc5DvTdN2NjGeMYv7Sk7ntNE_a8dGs9D8-dgfxRbog2c0oNOXimHJOZjRu7s26ZRKjyw8lGNmwr73Tonj-3gpc2qMJf0KF8Hfp_uyHCgGciN_QysArcDjJHujcSRx26KDpkbQt8OFaphsnfQQxPREEaHDXEuixqRvagVVmvDK36d26xp8n7D-gBtMUP8xxEIZjtZcDZoPhk5F9_-b6_tRwRBg')"></div>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="size-12 bg-primary rounded-full flex items-center justify-center text-white translate-y-4 group-hover:translate-y-0 transition-transform">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-yellow-500 text-[10px] font-bold rounded uppercase">Happy</div>
+</div>
+<h4 class="font-bold text-slate-100 truncate">Golden Hour</h4>
+<p class="text-sm text-slate-500 truncate">Aether Soul</p>
+</div>
+<!-- Song Card -->
+<div class="group bg-card-dark/40 hover:bg-card-dark/80 p-4 rounded-2xl transition-all duration-300 border border-white/5 hover:border-white/10">
+<div class="relative aspect-square rounded-xl overflow-hidden mb-4 shadow-lg">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Vintage microphone with purple spotlight" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBAQESCImtGph-KvEqJdy-s92c4ixwf4DgjshzfaSupYSsHpqxxg74oy7KJIZ3z5sJC5xJKvsO7WZq8c6oKGwaaPXhSNMoPSOX6h8GMT6qbUWySm7TuiqJv49-x3JYzZwp1cOThx12l5qptUgPxokist1lpWRy6WpHg17X1y32spX5TP3jpUMFgUyEwfveI2UAlhsCmhB5NS1IPfNz8ryGiXd1E8RsOX5xKtkIoml_YOl_YEgRJQlZlfWuNGx8-TreV-PPkbcs4bTQ')"></div>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="size-12 bg-primary rounded-full flex items-center justify-center text-white translate-y-4 group-hover:translate-y-0 transition-transform">
+<span class="material-symbols-outlined fill-1">play_arrow</span>
+</button>
+</div>
+<div class="absolute top-2 right-2 px-2 py-1 bg-yellow-500 text-[10px] font-bold rounded uppercase">Happy</div>
+</div>
+<h4 class="font-bold text-slate-100 truncate">Synth Joy</h4>
+<p class="text-sm text-slate-500 truncate">Retro Future</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Stats/Queue -->
+<aside class="w-80 border-l border-white/5 flex flex-col p-6 gap-8 bg-background-dark/30 overflow-y-auto">
+<div>
+<h3 class="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-4">Up Next</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="size-12 rounded-lg bg-cover bg-center" data-alt="Album cover showing futuristic city" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCKVHxX5kfiDTYGTan7cpot-VYzPSrTdw1FJb83R_bT9jg3jz8RrFPLvMoh0s7XU-xvOwEuQP1G313vtq36uXjOyTNn7GtU8-4iNrKpQ-F83ZVQJQI85JAag2oVsfP41t_HoUolIovL6r5XRn4rHCZq2JqnJp_0yeaHB_8UCxVsoT-l4ffyL4OEpwD343mBXftRe4OsxW08ilyInfoAkQ1sM-BuMXU-OpjxK42kRoG3DLMNKggmzM__1rCTz_QIiFjh5Bytn3pB8mo')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate group-hover:text-primary transition-colors">Digital Serenity</p>
+<p class="text-xs text-slate-500 truncate">Zen Pulse</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-200">more_vert</span>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="size-12 rounded-lg bg-cover bg-center" data-alt="Album cover with abstract blue design" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCmT4KMXiRFZhkqW5DsNGSA5Br_O5duIHTE2yRjHos_8X0jwduuLqB5Qd_FDFZxQ00qWlMCLtFCdFnubnoP05n7L2BFGOMVt7kHllGJwUTKvmj9u-zM1yo-FVioWXcuIK076cmwcbjYStYOIyU3hjZcC38HnBkFelEtTzvgWGXee7kwcpWKM9p8EYlUK_HaGwxTvN_2qntlWNqjxP1hsz-LqrB8fagy9IuD9VZ3ce8_VWLNfrg6Ac9DJ14dO8FPaZSMe3wIH6Aeza8')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-bold truncate group-hover:text-primary transition-colors">Blue Ocean</p>
+<p class="text-xs text-slate-500 truncate">Deep Wave</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 group-hover:text-slate-200">more_vert</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-4">Daily Mood Pulse</h3>
+<div class="h-40 w-full flex items-end gap-2 justify-between px-2">
+<div class="w-4 bg-primary/20 rounded-t h-[40%]"></div>
+<div class="w-4 bg-primary/40 rounded-t h-[60%]"></div>
+<div class="w-4 bg-primary/20 rounded-t h-[30%]"></div>
+<div class="w-4 bg-primary rounded-t h-[85%] glow-purple"></div>
+<div class="w-4 bg-primary/60 rounded-t h-[55%]"></div>
+<div class="w-4 bg-primary/30 rounded-t h-[45%]"></div>
+<div class="w-4 bg-primary/10 rounded-t h-[20%]"></div>
+</div>
+<div class="flex justify-between text-[10px] text-slate-500 mt-2 px-1">
+<span>08:00</span>
+<span>12:00</span>
+<span>16:00</span>
+<span>20:00</span>
+</div>
+</div>
+<div class="glass p-4 rounded-2xl flex flex-col gap-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-accent-purple">auto_awesome</span>
+<p class="text-xs font-bold uppercase tracking-wider text-slate-200">AI Insight</p>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">Your mood has improved by <span class="text-green-400 font-bold">12%</span> since this morning. Based on your current "Happy" state, we've increased the tempo of your queue.</p>
+</div>
+</aside>
+</main>
+<!-- Bottom Player Bar -->
+<footer class="glass h-24 border-t border-white/10 flex items-center justify-between px-8 z-50">
+<!-- Currently Playing -->
+<div class="flex items-center gap-4 w-1/4 min-w-[200px]">
+<div class="size-14 rounded-xl shadow-2xl glow-purple bg-cover bg-center border border-white/10" data-alt="Current album cover art" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_-s0e6SZAYSsSAxzQ6okK5egbHgGypOVRrluc7rbfoxSYscqesaLd10ALK-r3vW4rly0zAXpd7ChHjn9Q-kE5FLGcZdQGUkrr1pnFd-d4ENItGMghYNxnnrnGWnaFAfE2ylZHBgcgT8fTwIHZuyAxeAIYeFiY8EMDs8NK6S5HY0guHCMhMHvqov-PceBWvXQOVE5fIGv6hFIszMCWF5iPOS_0QnOB91HQRDFL_efeE8MfKshCBqUoomaUI6JMwRdlRxf1MbGbT5A')"></div>
+<div class="flex flex-col min-w-0">
+<h4 class="font-bold text-slate-100 truncate">Electric Dreams</h4>
+<p class="text-xs text-slate-400 truncate">Neon Horizon</p>
+</div>
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<!-- Player Controls -->
+<div class="flex flex-col items-center gap-2 flex-1 max-w-2xl px-8">
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">shuffle</span>
+</button>
+<button class="text-slate-200 hover:text-white transition-colors">
+<span class="material-symbols-outlined">skip_previous</span>
+</button>
+<button class="size-12 bg-white text-background-dark rounded-full flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-3xl fill-1">pause</span>
+</button>
+<button class="text-slate-200 hover:text-white transition-colors">
+<span class="material-symbols-outlined">skip_next</span>
+</button>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">repeat</span>
+</button>
+</div>
+<div class="flex items-center gap-3 w-full">
+<span class="text-[10px] text-slate-500 font-mono">1:45</span>
+<div class="flex-1 h-1 bg-white/10 rounded-full relative group cursor-pointer">
+<div class="absolute inset-y-0 left-0 bg-accent-purple w-1/3 rounded-full glow-purple"></div>
+<div class="absolute top-1/2 -translate-y-1/2 left-1/3 size-3 bg-white rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">3:42</span>
+</div>
+</div>
+<!-- Volume & Extras -->
+<div class="flex items-center justify-end gap-6 w-1/4">
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">lyrics</span>
+</button>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">queue_music</span>
+</button>
+<div class="flex items-center gap-2 w-32">
+<span class="material-symbols-outlined text-slate-400 text-lg">volume_up</span>
+<div class="flex-1 h-1 bg-white/10 rounded-full relative">
+<div class="absolute inset-y-0 left-0 bg-slate-300 w-2/3 rounded-full"></div>
+</div>
+</div>
+<button class="text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</footer>
+</body></html>
