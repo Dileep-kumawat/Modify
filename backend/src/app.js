@@ -8,7 +8,9 @@ app.use(express.json());
 app.use(cors({
     origin: process.env.FRONTEND_ENDPOINT,
     credentials: true
-}))
+}));
+
+app.use(express.static('../public'));
 
 /**
  * @route /api/song
