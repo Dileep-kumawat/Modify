@@ -1,0 +1,277 @@
+.aside {
+    width: 30%;
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    background: rgba(15, 23, 42, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+
+    
+    @media screen and (max-width:800px) {
+        width: 100%;
+    }
+}
+
+/* SCANNER */
+
+.scanner {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.scanner-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #64748b;
+    }
+}
+
+/* STATUS DOT */
+
+.status-indicator {
+    position: relative;
+    width: 8px;
+    height: 8px;
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        background: #6366f1;
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+    }
+
+    .ping {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #6366f1;
+        border-radius: 50%;
+        opacity: .75;
+
+        animation: ping 1.5s infinite;
+    }
+}
+
+@keyframes ping {
+    0% {
+        transform: scale(1);
+        opacity: .7;
+    }
+
+    75% {
+        transform: scale(2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* CAMERA PREVIEW */
+
+.scanner-preview {
+    position: relative;
+    aspect-ratio: 1/1;
+
+    border-radius: 16px;
+    overflow: hidden;
+
+    background: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .video {
+        height: 100%;
+
+        video {
+            height: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}
+
+.camera-feed {
+    position: absolute;
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+    opacity: .7;
+
+}
+
+/* FACE FRAME */
+
+.face-frame {
+    position: absolute;
+
+    top: 25%;
+    left: 25%;
+    right: 25%;
+    bottom: 33%;
+
+    border: 2px solid rgba(99, 102, 241, 0.6);
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detecting {
+    position: absolute;
+    top: -22px;
+    left: 0;
+
+    background: #6366f1;
+    color: white;
+
+    font-size: 10px;
+    padding: 2px 6px;
+
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    animation: pulse 2s infinite;
+}
+
+/* STATUS MESSAGE */
+
+.scanner-status {
+    position: absolute;
+
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+
+    padding: 8px;
+
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+
+    border-radius: 8px;
+    text-align: center;
+
+    p {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        color: #ffffff;
+
+        animation: pulse 2s infinite;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
+}
+
+/* BUTTON */
+
+.scanner-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recalibrate {
+    width: 100%;
+    padding: 12px;
+
+    background: #6366f1;
+    color: white;
+
+    border: none;
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    cursor: pointer;
+    transition: .2s;
+
+    &:hover {
+        background: #5558e6;
+    }
+}
+
+.scan-info {
+    font-size: 11px;
+    text-align: center;
+    color: #64748b;
+}
+
+/* NAVIGATION */
+
+.aside-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    a {
+        cursor: pointer;
+    }
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 16px;
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: #94a3b8;
+    transition: .2s;
+
+    span:last-child {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+    }
+
+    &.active {
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        color: #6366f1;
+    }
+}

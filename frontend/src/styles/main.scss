@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk',sans-serif;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+:root {
+    --primary: #2547f4;
+    --accent-purple: #a855f7;
+    --background-light: #f5f6f8;
+    --background-dark: #0a0c14;
+    --card-dark: #161926;
+}
+
+body {
+    background-color: var(--background-dark);
+}
+
+.flex{
+    display: flex;
+    color: white;
+
+    @media screen and (max-width:800px) {
+        flex-direction: column;
+    }
+}
