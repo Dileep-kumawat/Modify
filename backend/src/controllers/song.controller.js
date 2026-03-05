@@ -39,7 +39,7 @@ async function getSongsController(req, res) {
 
     // const songs = await songModel.find({ mood });
 
-    const count = await songModel.estimatedDocumentCount();
+    const count = await songModel.countDocuments({ mood });
     const random = Math.floor(Math.random() * count);
     const song = await songModel.findOne({ mood }).skip(random).limit(1);
 
